@@ -3,6 +3,7 @@ import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 import re
 import numpy as np
+
 # Load model and vectorizer
 try:
     with open("email_spam_pipeline.pkl", "rb") as f:
@@ -26,22 +27,19 @@ try:
 
     def main():
         if input_text:
-            
-        # Convert input text to a list of character ordinals
+            # Convert input text to a list of character ordinals
             array_representation = [ord(char) for char in input_text]
 
-        # Convert the list to a numpy array
+            # Convert the list to a numpy array
             array_representation = np.array(array_representation)
 
-        # Make prediction
-           prediction = model.predict(array_representation.reshape(1, -1))[0]
+            # Make prediction
+            prediction = model.predict(array_representation.reshape(1, -1))[0]
 
-          if prediction:
-              
-              
-              st.error("Spam")
-          else:
-              st.success("Not Spam")
+            if prediction:
+                st.error("Spam")
+            else:
+                st.success("Not Spam")
 
     if __name__ == "__main__":
         main()
