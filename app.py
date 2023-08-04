@@ -1,5 +1,6 @@
 import streamlit as st
 import pickle
+import scipy.sparse
 from sklearn.feature_extraction.text import CountVectorizer
 
 # Load model and vectorizer
