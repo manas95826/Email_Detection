@@ -30,11 +30,9 @@ def main():
         # Preprocess input text
         preprocessed_text = preprocess_text(input_text)
         
-        # Transform preprocessed text using the loaded vectorizer
-        input_vector = vectorizer.transform([preprocessed_text])
-        
-        # Convert input_vector to a dense array
-        input_array = input_vector.toarray()
+        # Create a vector using the loaded vectorizer's vocabulary
+        input_vector = [preprocessed_text]
+        input_array = vectorizer.transform(input_vector).toarray()
         
         # Make prediction
         prediction = model.predict(input_array)[0]
