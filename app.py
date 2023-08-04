@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 import re
-
+import numpy as np
 # Load model and vectorizer
 try:
     with open("email_spam_pipeline.pkl", "rb") as f:
