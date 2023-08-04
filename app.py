@@ -16,7 +16,7 @@ input_text = st.text_input("Enter email text")
 
 def main():
     if input_text:
-        # Preprocess input text using the same vectorizer
+        # Preprocess input text using the loaded vectorizer
         input_vector = vectorizer.transform([input_text])
         # Make prediction
         prediction = model.predict(input_vector)[0]
@@ -28,4 +28,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
