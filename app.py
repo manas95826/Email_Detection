@@ -26,20 +26,22 @@ try:
 
     def main():
         if input_text:
-            # Preprocess input text
-            # preprocessed_text = preprocess_text(input_text)
+            
+        # Convert input text to a list of character ordinals
+            array_representation = [ord(char) for char in input_text]
 
-            # Create a vector using the loaded vectorizer's vocabulary
-            # input_vector = vectorizer.transform([preprocessed_text])  # Transform a list of preprocessed text
-            array_representation = np.array([ord(char) for char in input_text])
+        # Convert the list to a numpy array
+            array_representation = np.array(array_representation)
 
-            # Make prediction
-            prediction = model.predict(array_representation)[0]
+        # Make prediction
+           prediction = model.predict(array_representation.reshape(1, -1))[0]
 
-            if prediction:
-                st.error("Spam")
-            else:
-                st.success("Not Spam")
+          if prediction:
+              
+              
+              st.error("Spam")
+          else:
+              st.success("Not Spam")
 
     if __name__ == "__main__":
         main()
