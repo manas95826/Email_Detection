@@ -18,6 +18,11 @@ def main():
     if input_text:
         # Preprocess input text using the loaded vectorizer
         input_vector = vectorizer.transform([input_text])
+        
+        # Ensure the input_vector is a CSR matrix
+        if not isinstance(input_vector, scipy.sparse.csr_matrix):
+            input_vector = input_vector.tocsr()
+        
         # Make prediction
         prediction = model.predict(input_vector)[0]
 
@@ -25,6 +30,7 @@ def main():
             st.error("Spam")
         else:
             st.success("Not Spam")
+
 
 if __name__ == "__main__":
     main()
