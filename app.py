@@ -27,7 +27,7 @@ def preprocess_text(text):
 
 def main():
     if input_text:
-        # Preprocess input text using the same steps as during training
+        # Preprocess input text
         preprocessed_text = preprocess_text(input_text)
         
         # Transform preprocessed text using the loaded vectorizer
