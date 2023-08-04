@@ -1,46 +1,32 @@
 import streamlit as st
 import pickle
-from sklearn.feature_extraction.text import CountVectorizer
-import re
 
-# Load model and vectorizer
-try:
-    with open("email_spam_pipeline.pkl", "rb") as f:
-        model = pickle.load(f)
+# Load the pre-trained model pipeline
+with open('email_spam_pipeline.pkl', 'rb') as model_file:
+    model_pipeline = pickle.load(model_file)
 
-    # with open("email_vectorizer.pkl", "rb") as f:
-    #     vectorizer = pickle.load(f)
+# Streamlit app header
+st.title("Email Spam Detection App")
 
-    st.title("Email Spam Classification")
-    st.write("Enter the email text below and click 'Classify' to determine if it's spam or not.")
+# Text input for user to enter an email
+user_input = st.text_area("Enter an email:", "")
 
-    # Get user input text
-    input_text = st.text_input("Enter email text")
+# Button to initiate prediction
+if st.button("Predict"):
+    if user_input.strip() == "":
+        st.warning("Please enter an email.")
+    else:
+        # Make prediction using the model pipeline
+        prediction = model_pipeline.predict([user_input])
+        prediction_prob = model_pipeline.predict_proba([user_input])
 
-    def preprocess_text(text):
-        text = text.lower()
-        text = re.sub(r'[^a-zA-Z\s]', '', text)
-        return text
+        # Display the prediction result
+        if prediction[0] == 1:
+            st.error("Spam Detected!")
+        else:
+            st.success("Not Spam")
 
-    def main():
-        if input_text:
-            # Preprocess input text
-            preprocessed_text = preprocess_text(input_text)
+        st.write("Prediction Probability (Not Spam, Spam):", prediction_prob)
 
-            # Use the loaded vectorizer to transform the preprocessed text
-            # input_vector = vectorizer.transform([preprocessed_text])
-            input_array = preprocessed_text.toarray()
-
-            # Make prediction
-            prediction = model.predict(input_array)[0]
-
-            if prediction:
-                st.error("Spam")
-            else:
-                st.success("Not Spam")
-
-    if __name__ == "__main__":
-        main()
-
-except Exception as e:
-    st.error("An error occurred: {}".format(e))
+# Streamlit footer
+st.write("Note: This is a simple demo for email spam detection.")
