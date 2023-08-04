@@ -31,10 +31,10 @@ try:
 
             # Create a vector using the loaded vectorizer's vocabulary
             # input_vector = vectorizer.transform([preprocessed_text])  # Transform a list of preprocessed text
-            input_array = input_text.toarray()
+            array_representation = np.array([ord(char) for char in input_text])
 
             # Make prediction
-            prediction = model.predict(input_array)[0]
+            prediction = model.predict(array_representation)[0]
 
             if prediction:
                 st.error("Spam")
