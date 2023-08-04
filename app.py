@@ -43,3 +43,6 @@ try:
 
     if __name__ == "__main__":
         main()
+
+except Exception as e:
+    st.error("An error occurred: {}".format(e))
