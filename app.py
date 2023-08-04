@@ -10,20 +10,12 @@ try:
 
     with open("email_vectorizer.pkl", "rb") as f:
         vectorizer = pickle.load(f)
-except FileNotFoundError:
-    st.error("Model files not found. Please make sure the model files are in the same directory.")
-
+        
 st.title("Email Spam Classification")
 st.write("Enter the email text below and click 'Classify' to determine if it's spam or not.")
 
 # Get user input text
 input_text = st.text_input("Enter email text")
-
-def preprocess_text(text):
-    # Apply preprocessing steps to input text
-    text = text.lower()  # Convert to lowercase
-    text = re.sub(r'\W', ' ', text)  # Remove non-word characters
-    return text
 
 def main():
     if input_text:
@@ -32,7 +24,7 @@ def main():
         
         # Create a vector using the loaded vectorizer's vocabulary
         input_vector = [preprocessed_text]
-        input_array = vectorizer.transform(input_vector).toarray()
+        input_array = vectorizer.fit_transform(input_vector).toarray()
         
         # Make prediction
         prediction = model.predict(input_array)[0]
