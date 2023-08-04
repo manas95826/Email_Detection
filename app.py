@@ -30,8 +30,8 @@ try:
             preprocessed_text = preprocess_text(input_text)
 
             # Create a vector using the loaded vectorizer's vocabulary
-            input_vector = [preprocessed_text]
-            input_array = vectorizer.transform(input_vector).toarray()
+            input_vector = vectorizer.transform([preprocessed_text])  # Transform a list of preprocessed text
+            input_array = input_vector.toarray()
 
             # Make prediction
             prediction = model.predict(input_array)[0]
