@@ -8,8 +8,8 @@ try:
     with open("email_spam_pipeline.pkl", "rb") as f:
         model = pickle.load(f)
 
-    with open("email_vectorizer.pkl", "rb") as f:
-        vectorizer = pickle.load(f)
+    # with open("email_vectorizer.pkl", "rb") as f:
+    #     vectorizer = pickle.load(f)
 
     st.title("Email Spam Classification")
     st.write("Enter the email text below and click 'Classify' to determine if it's spam or not.")
@@ -28,8 +28,8 @@ try:
             preprocessed_text = preprocess_text(input_text)
 
             # Use the loaded vectorizer to transform the preprocessed text
-            input_vector = vectorizer.transform([preprocessed_text])
-            input_array = input_vector.toarray()
+            # input_vector = vectorizer.transform([preprocessed_text])
+            input_array = preprocessed_text.toarray()
 
             # Make prediction
             prediction = model.predict(input_array)[0]
