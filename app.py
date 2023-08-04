@@ -34,7 +34,7 @@ try:
             # input_array = input_vector.toarray()
 
             # Make prediction
-            prediction = model.predict(input_array)[0]
+            prediction = model.predict(input_text)[0]
 
             if prediction:
                 st.error("Spam")
