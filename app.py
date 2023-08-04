@@ -23,8 +23,11 @@ def main():
         # Preprocess input text using the loaded vectorizer
         input_vector = vectorizer.transform([input_text])
         
+        # Convert input_vector to a dense array
+        input_array = input_vector.toarray()
+        
         # Make prediction
-        prediction = model.predict(input_vector)[0]
+        prediction = model.predict(input_array)[0]
 
         if prediction:
             st.error("Spam")
@@ -33,4 +36,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
