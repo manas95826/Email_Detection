@@ -5,6 +5,8 @@ This is a simple Streamlit app that demonstrates email spam detection using a pr
 
 ### Prerequisites
 Make sure you have the following dependencies installed:
-Python 3.6+
-Streamlit
-scikit-learn
+- Python 3.6+
+- Streamlit
+- scikit-learn
+- pandas
+- numpy
