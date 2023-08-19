@@ -15,7 +15,7 @@ Make sure you have the following dependencies installed:
 
 1. Clone this repository to your local machine.
 ```bash
-git clone https://github.com/YourUsername/YourRepository.git
+git clone https://github.com/manas95826/Email_Detection.git
 ```
 2. Navigate to the repository's directory.
 ```bash
