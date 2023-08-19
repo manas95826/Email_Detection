@@ -19,10 +19,10 @@ clf = Pipeline([
 ])
 clf.fit(X_train, y_train)
 
-# Save the entire pipeline (including the vectorizer and the model)
-# pipeline_filename = 'email_spam_pipeline.pkl'
-# with open(pipeline_filename, 'wb') as pipeline_file:
-#     pickle.dump(clf, pipeline_file)
+Save the entire pipeline (including the vectorizer and the model)
+pipeline_filename = 'email_spam_pipeline.pkl'
+with open(pipeline_filename, 'wb') as pipeline_file:
+    pickle.dump(clf, pipeline_file)
 
 clf.score(X_test,y_test)
 
